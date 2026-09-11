@@ -1,0 +1,48 @@
+# Render Blueprint for this project. Deploy: connect this repo in the Render dashboard under
+# "Blueprints" and Render reads this file automatically. It creates TWO services:
+#   - polling-api  (api/server.ts)         -- the backend
+#   - senate-2026-map (web/, Vite build)   -- the frontend, a static site
+# The database is deliberately NOT defined here (see DEPLOYMENT.md for why Neon is
+# recommended over Render's own Postgres for this project).
+#
+# After the blueprint deploys, set these in the Render dashboard (Environment tab) — secrets
+# are never stored in this file or in git:
+#   polling-api:
+#     DATABASE_URL     - from Neon
+#     INGEST_SECRET     - openssl rand -hex 32
+#     ALLOWED_ORIGINS   - the senate-2026-map service's onrender.com URL, once known
+#   senate-2026-map:
+#     VITE_POLLING_API_BASE - the polling-api service's onrender.com URL, once known
+#     (Vite inlines this at BUILD time -- changing it requires a rebuild, not just a restart)
+#
+# Render's free tier for a Web Service spins down after ~15 minutes of no traffic and takes
+# roughly 30-60s to wake back up on the next request — including the GitHub Actions cron
+# hitting /api/ingest, which will occasionally see a slow first response rather than a
+# failure. Upgrade to the Starter plan ($7/mo at time of writing) for an always-on instance
+# if that latency matters more than the $0 cost. See DEPLOYMENT.md. Static sites (the map)
+# don't spin down -- they're served from Render's CDN, not a container.
+
+services:
+  - type: web
+    name: polling-api
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npx tsx api/server.ts
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 20.18.0
+      # DATABASE_URL, INGEST_SECRET, ALLOWED_ORIGINS: set manually in the dashboard (secrets
+      # don't belong in a file that's committed to the repo, even a private one).
+
+  - type: web
+    name: senate-2026-map
+    runtime: static
+    buildCommand: cd web && npm install && npm run build
+    staticPublishPath: web/dist
+    envVars:
+      # VITE_POLLING_API_BASE: set manually in the dashboard -- see note above on build-time
+      # vs runtime env vars for a static Vite build.
+      - key: NODE_VERSION
+        value: 20.18.0

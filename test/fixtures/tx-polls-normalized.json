@@ -1,0 +1,182 @@
+[
+ {
+  "pollId": "poll_tx_0",
+  "pollsterId": "emerson_college",
+  "sourceUrl": "https://pollingsource.com/senate/TX",
+  "race": {
+   "raceId": "senate_2026",
+   "geographicId": "TX",
+   "chamber": "senate"
+  },
+  "fieldStart": "2026-08-10",
+  "fieldEnd": "2026-08-10",
+  "publishedAt": "2026-08-10T00:00:00Z",
+  "sampleSize": 1000,
+  "population": "LV",
+  "marginOfError": 3.0,
+  "candidates": [
+   {
+    "name": "James Talarico",
+    "party": "D",
+    "share": 46
+   },
+   {
+    "name": "Ken Paxton",
+    "party": "R",
+    "share": 47
+   }
+  ],
+  "ingestedAt": "2026-08-21T00:00:00Z",
+  "ingestionMethod": "manual"
+ },
+ {
+  "pollId": "poll_tx_1",
+  "pollsterId": "yougov_blue",
+  "sourceUrl": "https://pollingsource.com/senate/TX",
+  "race": {
+   "raceId": "senate_2026",
+   "geographicId": "TX",
+   "chamber": "senate"
+  },
+  "fieldStart": "2026-07-31",
+  "fieldEnd": "2026-07-31",
+  "publishedAt": "2026-07-31T00:00:00Z",
+  "sampleSize": 1001,
+  "population": "RV",
+  "marginOfError": 3.6,
+  "candidates": [
+   {
+    "name": "James Talarico",
+    "party": "D",
+    "share": 48
+   },
+   {
+    "name": "Ken Paxton",
+    "party": "R",
+    "share": 45
+   }
+  ],
+  "ingestedAt": "2026-08-21T00:00:00Z",
+  "ingestionMethod": "manual"
+ },
+ {
+  "pollId": "poll_tx_2",
+  "pollsterId": "wedgewood_polls",
+  "sourceUrl": "https://pollingsource.com/senate/TX",
+  "race": {
+   "raceId": "senate_2026",
+   "geographicId": "TX",
+   "chamber": "senate"
+  },
+  "fieldStart": "2026-07-31",
+  "fieldEnd": "2026-07-31",
+  "publishedAt": "2026-07-31T00:00:00Z",
+  "sampleSize": 800,
+  "population": "LV",
+  "marginOfError": 4.0,
+  "candidates": [
+   {
+    "name": "James Talarico",
+    "party": "D",
+    "share": 48
+   },
+   {
+    "name": "Ken Paxton",
+    "party": "R",
+    "share": 46
+   }
+  ],
+  "ingestedAt": "2026-08-21T00:00:00Z",
+  "ingestionMethod": "manual"
+ },
+ {
+  "pollId": "poll_tx_3",
+  "pollsterId": "texas_aandm_reconmr_siena",
+  "sourceUrl": "https://pollingsource.com/senate/TX",
+  "race": {
+   "raceId": "senate_2026",
+   "geographicId": "TX",
+   "chamber": "senate"
+  },
+  "fieldStart": "2026-07-30",
+  "fieldEnd": "2026-07-30",
+  "publishedAt": "2026-07-30T00:00:00Z",
+  "sampleSize": 619,
+  "population": "LV",
+  "marginOfError": 4.7,
+  "candidates": [
+   {
+    "name": "James Talarico",
+    "party": "D",
+    "share": 47
+   },
+   {
+    "name": "Ken Paxton",
+    "party": "R",
+    "share": 43
+   }
+  ],
+  "ingestedAt": "2026-08-21T00:00:00Z",
+  "ingestionMethod": "manual"
+ },
+ {
+  "pollId": "poll_tx_4",
+  "pollsterId": "texas_southern_university",
+  "sourceUrl": "https://pollingsource.com/senate/TX",
+  "race": {
+   "raceId": "senate_2026",
+   "geographicId": "TX",
+   "chamber": "senate"
+  },
+  "fieldStart": "2026-07-30",
+  "fieldEnd": "2026-07-30",
+  "publishedAt": "2026-07-30T00:00:00Z",
+  "sampleSize": 1200,
+  "population": "LV",
+  "marginOfError": 2.8,
+  "candidates": [
+   {
+    "name": "James Talarico",
+    "party": "D",
+    "share": 47
+   },
+   {
+    "name": "Ken Paxton",
+    "party": "R",
+    "share": 45
+   }
+  ],
+  "ingestedAt": "2026-08-21T00:00:00Z",
+  "ingestionMethod": "manual"
+ },
+ {
+  "pollId": "poll_tx_5",
+  "pollsterId": "fox_news",
+  "sourceUrl": "https://pollingsource.com/senate/TX",
+  "race": {
+   "raceId": "senate_2026",
+   "geographicId": "TX",
+   "chamber": "senate"
+  },
+  "fieldStart": "2026-07-27",
+  "fieldEnd": "2026-07-27",
+  "publishedAt": "2026-07-27T00:00:00Z",
+  "sampleSize": 1005,
+  "population": "RV",
+  "marginOfError": 3.0,
+  "candidates": [
+   {
+    "name": "James Talarico",
+    "party": "D",
+    "share": 51
+   },
+   {
+    "name": "Ken Paxton",
+    "party": "R",
+    "share": 48
+   }
+  ],
+  "ingestedAt": "2026-08-21T00:00:00Z",
+  "ingestionMethod": "manual"
+ }
+]

@@ -1,0 +1,24 @@
+{
+  "IA": {
+    "pollster": "Emerson College",
+    "date": "2026-08-04",
+    "n": 712,
+    "pop": "LV",
+    "moe": 3.7,
+    "dem": 45,
+    "rep": 48,
+    "cand": "Turek/Hinson",
+    "src": "https://emersoncollegepolling.com/iowa-2026-poll/"
+  },
+  "TX": {
+    "pollster": "Emerson College",
+    "date": "2026-08-10",
+    "n": 1000,
+    "pop": "LV",
+    "moe": 3,
+    "dem": 46,
+    "rep": 47,
+    "cand": "Talarico/Paxton",
+    "src": "https://emersoncollegepolling.com/texas-2026-poll-paxton-and-talarico/"
+  }
+}

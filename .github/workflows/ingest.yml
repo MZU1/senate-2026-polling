@@ -1,0 +1,47 @@
+name: Emerson polling ingestion
+
+# Recommended scheduler: GitHub's own cron, not a self-hosted always-on process. Free,
+# needs no server to keep alive, and this repo needs to exist on GitHub anyway to deploy
+# the API from it.
+#
+# Real caveats worth knowing (see DEPLOYMENT.md for detail):
+#  - GitHub does not guarantee exact timing for scheduled workflows; under load, a run can
+#    be delayed by several minutes, occasionally more. Fine for "every few minutes" polling
+#    of a source that itself only updates a few times a week — not fine if you need
+#    second-precision timing.
+#  - GitHub disables scheduled workflows automatically after 60 days with no repository
+#    activity on the default branch. If you go quiet on this repo for two months, ingestion
+#    silently stops until someone re-enables the workflow (Actions tab -> this workflow ->
+#    "Enable workflow") or pushes a commit.
+#
+# Required repo secrets (Settings -> Secrets and variables -> Actions):
+#   INGEST_SECRET   - same value as the API service's INGEST_SECRET env var
+#   API_BASE_URL    - the deployed API's base URL, e.g. https://your-api.onrender.com
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"  # every 10 minutes. Emerson publishes at most a few times a week,
+                             # so this is frequent enough to catch a new release quickly
+                             # without hammering the source; adjust freely.
+  workflow_dispatch: {}      # lets you trigger a run manually from the Actions tab, useful
+                              # for testing without waiting for the schedule
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger ingestion pass
+        run: |
+          status=$(curl -s -o /tmp/response.json -w "%{http_code}" -X POST \
+            "${{ secrets.API_BASE_URL }}/api/ingest" \
+            -H "Authorization: Bearer ${{ secrets.INGEST_SECRET }}" \
+            --max-time 60)
+          echo "HTTP status: $status"
+          cat /tmp/response.json
+          echo
+          # 429 (rate limited) is not a failure — it just means a run happened very
+          # recently (e.g. a manual trigger). Anything else non-2xx is a real failure.
+          if [ "$status" -ge 300 ] && [ "$status" -ne 429 ]; then
+            echo "Ingestion request failed with status $status"
+            exit 1
+          fi
