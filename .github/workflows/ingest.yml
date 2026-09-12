@@ -19,10 +19,17 @@ name: Emerson polling ingestion
 #   API_BASE_URL    - the deployed API's base URL, e.g. https://your-api.onrender.com
 
 on:
-  schedule:
-    - cron: "*/10 * * * *"  # every 10 minutes. Emerson publishes at most a few times a week,
-                             # so this is frequent enough to catch a new release quickly
-                             # without hammering the source; adjust freely.
+  # Schedule DISABLED for now (was every 10 min) -- it was failing every run overnight
+  # because the API isn't deployed to Render yet (no API_BASE_URL/INGEST_SECRET secrets
+  # set), which meant ~70 failure-notification emails with nothing actionable behind them.
+  # Re-enable the schedule below once the Render deploy is confirmed live and the two repo
+  # secrets are set (see note above) -- until then, workflow_dispatch (manual run from the
+  # Actions tab) is the only trigger, so it can still be tested on demand without spamming
+  # anyone.
+  # schedule:
+  #   - cron: "*/10 * * * *"  # every 10 minutes. Emerson publishes at most a few times a week,
+  #                            # so this is frequent enough to catch a new release quickly
+  #                            # without hammering the source; adjust freely.
   workflow_dispatch: {}      # lets you trigger a run manually from the Actions tab, useful
                               # for testing without waiting for the schedule
 
